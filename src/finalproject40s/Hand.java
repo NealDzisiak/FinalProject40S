@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
  */
 public class Hand extends Deck
 {
-
-    String total = "You have ";
     
     /**
      * Default constructor, set class properties
@@ -33,11 +31,11 @@ public class Hand extends Deck
         final int MIN = 0;
         final int MAXNUMBER = 12;
             
-        int number = random(MIN,MAXNUMBER); //random between 0 and 1 (not 0 or 1)
+        int number = random(MIN,MAXNUMBER); 
         
         final int MAXSUIT = 3;
             
-        int suit = random(MIN,MAXSUIT); //random between 0 and 1 (not 0 or 1)
+        int suit = random(MIN,MAXSUIT); 
             
         if ("x".equals(deck[suit][number])){
             
@@ -46,8 +44,6 @@ public class Hand extends Deck
         }
         else
         {
-        
-            total = total + deck[suit][number] + ", ";
             
             deck[suit][number] = "x";
         
@@ -72,31 +68,5 @@ public class Hand extends Deck
         return (int)number;
     }
        
-    
-    public void showHand(){        
-        
-        // welcoms them to the program
-        JOptionPane.showMessageDialog(
-                null, 
-                total,
-                "hand test",
-                JOptionPane.PLAIN_MESSAGE
-        );
-        
-        
-    }
-    
-    
-    
-    
-    /**
-     * a Deep clone, creates a duplicate object using new memory
-     *
-     * @return a "clone" of the object using new memory
-     */
-    @Override
-    public Hand clone() {
-        return this;
-    }
-    
+
 }

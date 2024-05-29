@@ -9,9 +9,11 @@ package finalproject40s;
  * @author n.dzisiak
  */
 public interface Game {
+
+    int makeBet(String TITLE, int cash);
     
-    void HandSize(int number ); 
-    int NewCard(String[][] deck);
-    boolean Win (int handTotal, int dealerHand);
+    int Win (int cash, int bet);
+    
+    int lost (int cash, int bet);
     
 }

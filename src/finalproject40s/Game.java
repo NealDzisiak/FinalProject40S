@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package finalproject40s;
 
 /**
@@ -11,9 +7,9 @@ package finalproject40s;
 public interface Game {
 
     int makeBet(String TITLE, int cash);
-    
-    int Win (int cash, int bet);
-    
-    int lost (int cash, int bet);
-    
+
+    int Win(int cash, int bet, int handTotal, int dealerHandTotal);
+
+    int lost(int cash, int bet, int handTotal, int dealerHandTotal);
+
 }

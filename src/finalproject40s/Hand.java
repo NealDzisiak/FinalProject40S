@@ -1,8 +1,6 @@
 /** Required package class namespace */
 package finalproject40s;
 
-import javax.swing.JOptionPane;
-
 /**
  * Hand.java - the subclass of deck, is the hand
  *
@@ -21,7 +19,7 @@ public class Hand extends Deck {
     /**
      *
      * draws a new card
-     * 
+     *
      * @param deck the array that contains the deck
      * @return the card drawn
      */
@@ -29,27 +27,36 @@ public class Hand extends Deck {
 
         // the minimum valus
         final int MIN = 0;
-        
-        // the maximum value
+
+        // the maximum card value
         final int MAXNUMBER = 12;
 
-        // a random number from the random method, number is between 
+        // a random card value from the random method 
         int number = random(MIN, MAXNUMBER);
 
+        // the maximum number of suits
         final int MAXSUIT = 3;
 
+        // get a random suit
         int suit = random(MIN, MAXSUIT);
 
+        // if the card has already been drawn
         if ("x".equals(deck[suit][number])) {
 
+            // rerun this method
             return NewCard(deck);
 
+            // otherwise
         } else {
 
+            // replace the card name with x. showing its drawn
             deck[suit][number] = "x";
 
+            // correct the cards value for blackjack with the method 
+            // card corrector 
             int value = cardCorrector(number);
 
+            // return the value
             return value;
 
         }
@@ -71,11 +78,10 @@ public class Hand extends Deck {
         return (int) number;
     }
 
-    
     /**
-     * 
+     *
      * corrects the card value for blackjack
-     * 
+     *
      * @param cardValue the cards value
      * @return the corrected card values
      */

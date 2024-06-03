@@ -35,11 +35,15 @@ public class Deck {
      */
     public void ShowDeck() {
 
+        // for every suit
         for (int row = 0; row < SUITNUMBER; row++) {
+            // for every card
             for (int column = 0; column < CARDNUMBER; column++) {
+                // output what is the array
                 System.out.println(deck[row][column]);
             }
         }
+        // for spacing
         System.out.println("\n\n\n");
     }
 

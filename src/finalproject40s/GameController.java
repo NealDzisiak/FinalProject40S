@@ -282,25 +282,34 @@ public class GameController implements Blackjack, Game {
      */
     @Override
     public boolean WinCon(int playerHand, int dealerHand) {
-
+        
+        // if the players hand is above 21
         if (playerHand > 21) {
 
+            // you lose
             return false;
 
+        // else if the dealers hand is above 21
         } else if (dealerHand > 21) {
 
+            // you win
             return true;
 
+        // else if the players hand is greater then the dealers hand
         } else if (playerHand > dealerHand) {
 
+            // you win
             return true;
 
         }
 
+        // if nothing else is triggered, you lose
         return false;
     }
 
     /**
+     * 
+     * 
      * 
      * @param cash
      * @param bet
@@ -326,6 +335,8 @@ public class GameController implements Blackjack, Game {
 
     /**
      * 
+     * 
+     * 
      * @param cash
      * @param bet
      * @param playerHand
@@ -347,6 +358,8 @@ public class GameController implements Blackjack, Game {
     }
 
     /**
+     * 
+     * 
      * 
      * @param TITLE
      * @param message1

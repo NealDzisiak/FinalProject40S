@@ -9,9 +9,13 @@ package finalproject40s;
  */
 public class Deck {
 
+    // the amount of suits for a deck of cards
     final int SUITNUMBER = 4;
+    
+    // the amount of different card values in a deck
     final int CARDNUMBER = 13;
 
+    // the array for the deck
     public String[][] deck = new String[SUITNUMBER][CARDNUMBER];
 
     /**
@@ -19,10 +23,16 @@ public class Deck {
      */
     public Deck() {
 
+        // creats a new deck each time the class is integrated
         NewDeck();
 
     }
 
+    /**
+     * 
+     * shows the deck to the player
+     * 
+     */
     public void ShowDeck() {
 
         for (int row = 0; row < SUITNUMBER; row++) {
@@ -33,6 +43,11 @@ public class Deck {
         System.out.println("\n\n\n");
     }
 
+    /**
+     * 
+     * Crests a new deck
+     * 
+     */
     private void NewDeck() {
 
         int s = 1;

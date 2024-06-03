@@ -12,13 +12,16 @@ import javax.swing.JOptionPane;
 public class GameController implements Blackjack, Game {
 
     public GameController() {
-        // TODO code application logic here
+        // variable containing title of the program
         final String TITLE = "Blackjack";
 
+        // variable containing the players cash
         int cash = 200;
 
+        // calls the start method
         start(TITLE);
 
+        // calls the program method
         program(TITLE, cash);
     }
 
@@ -50,19 +53,22 @@ public class GameController implements Blackjack, Game {
                 JOptionPane.PLAIN_MESSAGE
         );
 
+        // checks to see if the entered string contains only numbers
         boolean isNumber = isAlpha(number);
 
+        // if it dosn't...
         if (isNumber == false) {
 
-            // welcoms them to the program
+            // tell them that they cant only enter numbers
             JOptionPane.showMessageDialog(
                     null,
                     """
-                You can't bet letters, please try again""",
+                You can't enter letters or charecters, please try again""",
                     TITLE,
                     JOptionPane.PLAIN_MESSAGE
             );
 
+            // rerun the method
             return makeBet(TITLE, cash);
 
         } else {
@@ -70,9 +76,10 @@ public class GameController implements Blackjack, Game {
             // then change the string into an int
             int bet = Integer.parseInt(number);
 
+            // if the bet is larger then the players cash...
             if (bet > cash) {
 
-                // welcoms them to the program
+                // tell them they bet more then they have
                 JOptionPane.showMessageDialog(
                         null,
                         """
@@ -82,24 +89,13 @@ public class GameController implements Blackjack, Game {
                         JOptionPane.PLAIN_MESSAGE
                 );
 
+                // rerun the method
                 return makeBet(TITLE, cash);
 
-            } else if (bet < 0) {
-
-                // welcoms them to the program
-                JOptionPane.showMessageDialog(
-                        null,
-                        """
-                    You can't bet negative money,
-                    please make a actual bet""",
-                        TITLE,
-                        JOptionPane.PLAIN_MESSAGE
-                );
-
-                return makeBet(TITLE, cash);
-
+                // otherwise
             } else {
 
+                // return the bet
                 return bet;
 
             }
@@ -121,6 +117,13 @@ public class GameController implements Blackjack, Game {
 
     }
 
+    /**
+     * 
+     * 
+     * 
+     * @param TITLE
+     * @param cash 
+     */
     private void program(String TITLE, int cash) {
 
         if (cash == 0) {
@@ -271,6 +274,12 @@ public class GameController implements Blackjack, Game {
         System.exit(0);
     }
 
+    /**
+     * 
+     * @param playerHand
+     * @param dealerHand
+     * @return 
+     */
     @Override
     public boolean WinCon(int playerHand, int dealerHand) {
 
@@ -291,6 +300,14 @@ public class GameController implements Blackjack, Game {
         return false;
     }
 
+    /**
+     * 
+     * @param cash
+     * @param bet
+     * @param playerHand
+     * @param dealerHand
+     * @return 
+     */
     @Override
     public int Win(int cash, int bet, int playerHand, int dealerHand) {
 
@@ -307,6 +324,14 @@ public class GameController implements Blackjack, Game {
 
     }
 
+    /**
+     * 
+     * @param cash
+     * @param bet
+     * @param playerHand
+     * @param dealerHand
+     * @return 
+     */
     @Override
     public int lost(int cash, int bet, int playerHand, int dealerHand) {
         JOptionPane.showMessageDialog(
@@ -321,6 +346,13 @@ public class GameController implements Blackjack, Game {
         return money;
     }
 
+    /**
+     * 
+     * @param TITLE
+     * @param message1
+     * @param message2
+     * @return 
+     */
     private String Options(String TITLE, String message1, String message2) {
 
         String choice = JOptionPane.showInputDialog(

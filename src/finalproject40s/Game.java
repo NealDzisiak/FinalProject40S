@@ -2,6 +2,8 @@ package finalproject40s;
 
 /**
  *
+ * the rules for all the games
+ * 
  * @author n.dzisiak
  */
 public interface Game {

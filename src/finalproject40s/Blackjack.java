@@ -2,6 +2,8 @@ package finalproject40s;
 
 /**
  *
+ * the rules specific to blackjack
+ * 
  * @author n.dzisiak
  */
 public interface Blackjack extends Game {

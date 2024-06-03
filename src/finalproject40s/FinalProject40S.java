@@ -15,6 +15,7 @@ public class FinalProject40S {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // run the game
         GameController gameController = new GameController();
     }
 

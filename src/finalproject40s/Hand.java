@@ -63,6 +63,7 @@ public class Hand extends Deck {
     }
 
     /**
+     * 
      * Generates a random number in a range between two numbers
      *
      * @param low the lowest number in the range
@@ -71,11 +72,23 @@ public class Hand extends Deck {
      * the high number
      */
     private int random(int low, int high) {
+        
+        // this generates a random decimal number between 0 and 1
         double seed = Math.random();
+        
+        // change the lowest number in the range to a double
         double L = (double) low;
+        
+        // change the highest number in the range to a double
         double H = (double) high;
+        
+        // use this equation to get a random double between the high and low
+        // value
         double number = (H - L + 1) * seed + L;
+        
+        // return the number as a int
         return (int) number;
+        
     }
 
     /**

@@ -12,6 +12,6 @@ public interface Game {
 
     int Win(int cash, int bet, int handTotal, int dealerHandTotal);
 
-    int lost(int cash, int bet, int handTotal, int dealerHandTotal);
+    int lose(int cash, int bet, int handTotal, int dealerHandTotal);
 
 }

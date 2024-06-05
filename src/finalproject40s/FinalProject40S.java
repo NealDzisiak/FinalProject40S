@@ -2,7 +2,7 @@ package finalproject40s;
 
 
 /*
- * FinalProject40S - description
+ * FinalProject40S - calles the game controller class
  * 
  * @author Neal Dzisiak
  * @since Apr 19, 2024

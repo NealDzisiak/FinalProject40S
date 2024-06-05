@@ -8,6 +8,6 @@ package finalproject40s;
  */
 public interface Blackjack extends Game {
 
-    boolean WinCon(int handTotal, int dealerHand);
+    boolean winCon(int handTotal, int dealerHand, int blackjack);
 
 }

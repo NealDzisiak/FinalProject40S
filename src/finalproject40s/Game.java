@@ -8,9 +8,9 @@ package finalproject40s;
  */
 public interface Game {
 
-    int makeBet(String TITLE, int cash);
+    int makeBet(int cash);
 
-    int Win(int cash, int bet, int handTotal, int dealerHandTotal);
+    int win(int cash, int bet, int handTotal, int dealerHandTotal);
 
     int lose(int cash, int bet, int handTotal, int dealerHandTotal);
 

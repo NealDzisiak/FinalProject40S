@@ -4,35 +4,35 @@ package finalproject40s;
 import javax.swing.JOptionPane;
 
 /**
- * GameController.java - description
+ * GameController.java - the actual code for the game, allows the player to make
+ * bets, and play a game of blackjack
  *
  * @author Neal Dzisiak
  * @since May 29, 2024, 2:19:34 p.m.
  */
 public class GameController implements Blackjack, Game {
 
+    // variable containing title of the program
+    final static String TITLE = "Blackjack";
+
     public GameController() {
-        
-        // variable containing title of the program
-        final String TITLE = "Blackjack";
 
         // variable containing the players cash
         int cash = 200;
 
         // calls the start method
-        start(TITLE);
+        start();
 
         // calls the program method
-        program(TITLE, cash);
+        program(cash);
     }
 
     /**
      *
      * welcomes them to the program then sends them to the program
-     *
-     * @param title the title of the program
+     * 
      */
-    private void start(String TITLE) {
+    private void start() {
 
         // welcoms them to the program
         JOptionPane.showMessageDialog(
@@ -48,13 +48,12 @@ public class GameController implements Blackjack, Game {
      *
      * allows the player to make a bet
      *
-     * @param TITLE the title of the program
      * @param cash the players cash
      * @return the bet the player made
      */
     @Override
-    public int makeBet(String TITLE, int cash) {
-        
+    public int makeBet(int cash) {
+
         // let them enter a number for the base in the form of a string        
         String number = JOptionPane.showInputDialog(
                 null,
@@ -79,7 +78,7 @@ public class GameController implements Blackjack, Game {
             );
 
             // rerun the method
-            return makeBet(TITLE, cash);
+            return makeBet(cash);
 
         } else {
 
@@ -100,7 +99,7 @@ public class GameController implements Blackjack, Game {
                 );
 
                 // rerun the method
-                return makeBet(TITLE, cash);
+                return makeBet(cash);
 
                 // otherwise
             } else {
@@ -132,31 +131,30 @@ public class GameController implements Blackjack, Game {
      *
      * the program that simulates a game of blackjack
      *
-     * @param TITLE the programs title
      * @param cash the player cash
      */
-    private void program(String TITLE, int cash) {
+    private void program(int cash) {
 
         // the players bet is created in the makebet  method and sent here
-        int bet = makeBet(TITLE, cash);
+        int bet = makeBet(cash);
 
         // create a new deck
         Deck deck = new Deck();
-        
+
         // create a new hand
         Hand hand = new Hand();
 
         // draw 3 cards for the dealer
-        int dealerCard1 = hand.NewCard(deck.deck);
-        int dealerCard2 = hand.NewCard(deck.deck);
-        int dealerCard3 = hand.NewCard(deck.deck);
+        int dealerCard1 = hand.newCard(deck.deck);
+        int dealerCard2 = hand.newCard(deck.deck);
+        int dealerCard3 = hand.newCard(deck.deck);
 
         // add the values together for a total
         int dealerHandTotal = dealerCard1 + dealerCard2 + dealerCard3;
 
         // draw 2 cards for the player
-        int card1 = hand.NewCard(deck.deck);
-        int card2 = hand.NewCard(deck.deck);
+        int card1 = hand.newCard(deck.deck);
+        int card2 = hand.newCard(deck.deck);
 
         // add the values together for a total
         int handTotal = card1 + card2;
@@ -164,7 +162,10 @@ public class GameController implements Blackjack, Game {
         // creats a message containing the individual values of the cards in 
         // the players hand
         String message1 = "You have a " + card1 + " and " + card2;
-        
+
+        // maximum hand size befor busting
+        final int BLACKJACK = 21;
+
         // innitializes choics
         String choice = "";
 
@@ -174,13 +175,13 @@ public class GameController implements Blackjack, Game {
                 && choice.equalsIgnoreCase("S") == false) {
 
             // give the player a choice to hit or stand
-            choice = Options(TITLE, message1, handTotal);
+            choice = Options(message1, handTotal);
 
             // while the choice is hit
             while (choice.equalsIgnoreCase("H")) {
 
                 // draw a new card for the player
-                int drawnCard = hand.NewCard(deck.deck);
+                int drawnCard = hand.newCard(deck.deck);
 
                 // add it to the hand total
                 handTotal = handTotal + drawnCard;
@@ -189,7 +190,7 @@ public class GameController implements Blackjack, Game {
                 message1 = message1 + " and " + drawnCard;
 
                 // if the hand total is now above 21
-                if (handTotal > 21) {
+                if (handTotal > BLACKJACK) {
 
                     // show them they bustedthey bust
                     JOptionPane.showMessageDialog(
@@ -204,7 +205,7 @@ public class GameController implements Blackjack, Game {
                 } else {
 
                     // give them the option to hit or stand again
-                    choice = Options(TITLE, message1, handTotal);
+                    choice = Options(message1, handTotal);
 
                 }
             }
@@ -212,10 +213,11 @@ public class GameController implements Blackjack, Game {
 
         // thanks to clasic casino rules, the dealer must hit if under 17, so
         // while the dealers total hand value is below 17
-        while (dealerHandTotal < 17) {
+        final int DEALERRULE = 17;
+        while (dealerHandTotal < DEALERRULE) {
 
             // draw the dealer a new card
-            int newDealerCard = hand.NewCard(deck.deck);
+            int newDealerCard = hand.newCard(deck.deck);
 
             // add the new cards value to the dealers total hand value
             dealerHandTotal = dealerHandTotal + newDealerCard;
@@ -223,29 +225,31 @@ public class GameController implements Blackjack, Game {
         }
 
         // checks to see if the player won
-        boolean whoWins = WinCon(handTotal, dealerHandTotal);
-        
+        boolean whoWins = winCon(handTotal, dealerHandTotal,
+                BLACKJACK);
+
         // if the player won
         if (whoWins == true) {
 
             // get the player new money from the win method
-            cash = Win(cash, bet, handTotal,
+            cash = win(cash, bet, handTotal,
                     dealerHandTotal);
 
-          // if the player lost
+            // if the player lost
         } else if (whoWins == false) {
 
             // get the player new money from the lose method
-            cash = lose(cash, bet, handTotal, 
+            cash = lose(cash, bet, handTotal,
                     dealerHandTotal);
-            
+
         }
 
         // error checking code that showes the deck
-        deck.ShowDeck();
-        
+        deck.showDeck();
+
         // if the player is out of cash
-        if (cash == 0) {
+        final int BROKE = 0;
+        if (cash == BROKE) {
 
             // tell them they are out of cash
             JOptionPane.showMessageDialog(
@@ -258,21 +262,20 @@ public class GameController implements Blackjack, Game {
             // end the program
             end(TITLE);
 
-        // else
-        }else{
-            
+            // else
+        } else {
+
             // give them the option to end the program or replay it
             playAgain(TITLE, cash);
 
         }
-        
+
     }
 
     /**
      *
      * give them the option to do it again or exit the program
      *
-     * @param title the title of the program
      */
     private void playAgain(String TITLE, int cash) {
 
@@ -291,7 +294,7 @@ public class GameController implements Blackjack, Game {
         if (choice == JOptionPane.YES_OPTION) {
 
             // this sends them back to the start
-            program(TITLE, cash);
+            program(cash);
 
         } else {
 
@@ -303,10 +306,9 @@ public class GameController implements Blackjack, Game {
     }
 
     /**
-     * 
+     *
      * Says goodbye and ends the program
      *
-     * @param title the title of the program
      */
     private void end(String title) {
 
@@ -325,13 +327,13 @@ public class GameController implements Blackjack, Game {
     /**
      *
      * the win conditions of the game
-     * 
+     *
      * @param playerHand the players hand total
      * @param dealerHand the dealers hand total
      * @return if the player won
      */
     @Override
-    public boolean WinCon(int playerHand, int dealerHand) {
+    public boolean winCon(int playerHand, int dealerHand, int blackjack) {
 
         // if the players hand is above 21
         if (playerHand > 21) {
@@ -368,7 +370,7 @@ public class GameController implements Blackjack, Game {
      * @return the players new amount of money
      */
     @Override
-    public int Win(int cash, int reward, int playerHand, int dealerHand) {
+    public int win(int cash, int reward, int playerHand, int dealerHand) {
 
         // show the, that they won, and the players and dealers hand
         JOptionPane.showMessageDialog(
@@ -396,7 +398,7 @@ public class GameController implements Blackjack, Game {
      */
     @Override
     public int lose(int cash, int owed, int playerHand, int dealerHand) {
-        
+
         // show the, that they lost, and the players and dealers hand
         JOptionPane.showMessageDialog(
                 null,
@@ -414,18 +416,17 @@ public class GameController implements Blackjack, Game {
      *
      * allows the player to make a choice
      *
-     * @param TITLE the programs title
      * @param message1 first part of the message
      * @param message2 second part of the message
      * @return the players choice
      */
-    private String Options(String TITLE, String message1, int handTotal) {
-        
+    private String Options(String message1, int handTotal) {
+
         // showes the player the choice to hit or stand
         String choice = JOptionPane.showInputDialog(
                 null,
                 message1 + "\nfor a total of " + handTotal
-                        + "\nWould you like to Hit(h) or Stand(s)",
+                + "\nWould you like to Hit(h) or Stand(s)",
                 TITLE,
                 JOptionPane.QUESTION_MESSAGE
         );

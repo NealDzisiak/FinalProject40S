@@ -2,7 +2,7 @@
 package finalproject40s;
 
 /**
- * Deck.java - description
+ * Deck.java - creates a deck for the player, and shows it
  *
  * @author Neal Dzisiak
  * @since May 8, 2024, 8:07:05 a.m.
@@ -24,7 +24,7 @@ public class Deck {
     public Deck() {
 
         // creats a new deck each time the class is integrated
-        NewDeck();
+        newDeck();
 
     }
 
@@ -33,7 +33,7 @@ public class Deck {
      * shows the deck to the player
      *
      */
-    public void ShowDeck() {
+    public void showDeck() {
 
         // for every suit
         for (int row = 0; row < SUITNUMBER; row++) {
@@ -55,7 +55,7 @@ public class Deck {
      * Crests a new deck
      *
      */
-    private void NewDeck() {
+    private void newDeck() {
 
         // the current suit number
         int s = 1;

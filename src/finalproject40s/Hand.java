@@ -10,20 +10,13 @@ package finalproject40s;
 public class Hand extends Deck {
 
     /**
-     * Default constructor, set class properties
-     */
-    public Hand() {
-
-    }
-
-    /**
      *
      * draws a new card
      *
      * @param deck the array that contains the deck
      * @return the card drawn
      */
-    public int NewCard(String[][] deck) {
+    public int newCard(String[][] deck) {
 
         // the minimum valus
         final int MIN = 0;
@@ -44,7 +37,7 @@ public class Hand extends Deck {
         if ("x".equals(deck[suit][number])) {
 
             // rerun this method
-            return NewCard(deck);
+            return newCard(deck);
 
             // otherwise
         } else {
@@ -63,7 +56,7 @@ public class Hand extends Deck {
     }
 
     /**
-     * 
+     *
      * Generates a random number in a range between two numbers
      *
      * @param low the lowest number in the range
@@ -72,23 +65,23 @@ public class Hand extends Deck {
      * the high number
      */
     private int random(int low, int high) {
-        
+
         // this generates a random decimal number between 0 and 1
         double seed = Math.random();
-        
+
         // change the lowest number in the range to a double
         double L = (double) low;
-        
+
         // change the highest number in the range to a double
         double H = (double) high;
-        
+
         // use this equation to get a random double between the high and low
         // value
         double number = (H - L + 1) * seed + L;
-        
+
         // return the number as a int
         return (int) number;
-        
+
     }
 
     /**

@@ -195,7 +195,7 @@ public class GameController implements Blackjack, Game {
                     // show them they bustedthey bust
                     JOptionPane.showMessageDialog(
                             null,
-                            "You busted with " + message1
+                            "You busted, " + message1
                     );
 
                     // change choice to s

@@ -165,20 +165,24 @@ public class GameController implements Blackjack, Game {
 
         // maximum hand size befor busting
         final int BLACKJACK = 21;
+        
+        
+        final String HIT = "H";
+        final String STAND = "S";
 
         // innitializes choics
         String choice = "";
 
         // while the players choice dosn't equal H or S (capitalization dosn't 
         // matter) repeat this part of the program
-        while (choice.equalsIgnoreCase("H") == false
-                && choice.equalsIgnoreCase("S") == false) {
+        while (choice.equalsIgnoreCase(HIT) == false
+                && choice.equalsIgnoreCase(STAND) == false) {
 
             // give the player a choice to hit or stand
             choice = Options(message1, handTotal);
 
             // while the choice is hit
-            while (choice.equalsIgnoreCase("H")) {
+            while (choice.equalsIgnoreCase(HIT)) {
 
                 // draw a new card for the player
                 int drawnCard = hand.newCard(deck.deck);
@@ -198,8 +202,8 @@ public class GameController implements Blackjack, Game {
                             "You busted, " + message1
                     );
 
-                    // change choice to s
-                    choice = "s";
+                    // change choice to stand
+                    choice = STAND;
 
                     // if its not greater then 21
                 } else {
@@ -266,18 +270,19 @@ public class GameController implements Blackjack, Game {
         } else {
 
             // give them the option to end the program or replay it
-            playAgain(TITLE, cash);
+            playAgain(cash);
 
         }
 
     }
 
     /**
-     *
-     * give them the option to do it again or exit the program
-     *
+     * 
+     * allows the user to decide if they want to play again
+     * 
+     * @param cash the users cash
      */
-    private void playAgain(String TITLE, int cash) {
+    private void playAgain(int cash) {
 
         // creats a message box that showes them the options yes and no and puts
         // it into a integer (Because i cant figure out how to do it any other 
@@ -330,19 +335,20 @@ public class GameController implements Blackjack, Game {
      *
      * @param playerHand the players hand total
      * @param dealerHand the dealers hand total
+     * @param blackjack the maximum hand value allowed
      * @return if the player won
      */
     @Override
     public boolean winCon(int playerHand, int dealerHand, int blackjack) {
 
         // if the players hand is above 21
-        if (playerHand > 21) {
+        if (playerHand > blackjack) {
 
             // you lose
             return false;
 
             // else if the dealers hand is above 21
-        } else if (dealerHand > 21) {
+        } else if (dealerHand > blackjack) {
 
             // you win
             return true;

@@ -36,12 +36,14 @@ public class Hand extends Deck {
         // if the card has already been drawn
         if ("x".equals(deck[suit][number])) {
 
+            // RECURSIVE CASE
             // rerun this method
             return newCard(deck);
 
             // otherwise
         } else {
 
+            // BASE CASE
             // replace the card name with x. showing its drawn
             deck[suit][number] = "x";
 

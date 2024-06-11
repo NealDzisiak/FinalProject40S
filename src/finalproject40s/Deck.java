@@ -16,7 +16,7 @@ public class Deck {
     final int CARDNUMBER = 13;
 
     // the array for the deck
-    public String[][] deck = new String[SUITNUMBER][CARDNUMBER];
+    protected String[][] deck = new String[SUITNUMBER][CARDNUMBER];
 
     /**
      * Default constructor, set class properties

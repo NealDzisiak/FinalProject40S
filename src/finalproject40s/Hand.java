@@ -33,6 +33,7 @@ public class Hand extends Deck {
         // get a random suit
         int suit = random(MIN, MAXSUIT);
 
+        // recursions time
         // if the card has already been drawn
         if ("x".equals(deck[suit][number])) {
 
